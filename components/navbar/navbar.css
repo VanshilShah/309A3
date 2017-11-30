@@ -1,0 +1,30 @@
+
+.navbar {
+  padding: 0;
+  /* margin: auto; */
+  align-items: center;
+}
+
+.navbar-item {
+  background-color: #4B77BE;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  transition-duration: 0.3s;
+  color: #ffffff;
+}
+
+.navbar-item:hover {
+  background-color: #6BB9F0;
+  color: #000000;
+}
+
+.navbar-item:focus {
+    color: #000000;
+}
+
+.navbar-item-active {
+    background-color: #5B97EE;
+    color: #000000;
+}
+

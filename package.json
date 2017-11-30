@@ -1,0 +1,28 @@
+{
+  "name": "shareschedule",
+  "version": "1.0.0",
+  "description": "Share youre uoft schedule with your facebook friends",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "6.1.0"
+  },
+  "author": "Vanshil Shah",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.3.0",
+    "moment": "^2.16.0",
+    "pg": "^7.4.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.1.1",
+    "nodemon": "^1.11.0"
+  }
+}

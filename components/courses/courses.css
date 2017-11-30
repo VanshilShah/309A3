@@ -1,0 +1,65 @@
+
+.calendar-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 300px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.courses-container {
+    background-color: #cccccc;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.courses-list {
+    flex: 1;
+    display: block;
+    padding: 10px;
+    overflow: auto;
+    border: 1px solid #999999;
+}
+
+.course-item {
+    background-color: #9bb0de;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #666666;
+    transition-duration: 100ms;
+}
+
+.course-item:hover {
+    background-color: #c7d4ef;
+}
+
+.calendar {
+    margin: auto;
+    flex: 1;
+}
+
+#searchBtn {
+    width: 100px;
+    background-color: #8A2BE2;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+input[type=search]{
+    margin-left: 30px;
+    border: 2px solid dimgray;
+    border-radius: 2px;
+}

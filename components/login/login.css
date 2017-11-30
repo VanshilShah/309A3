@@ -1,0 +1,45 @@
+/*
+div {
+  margin-left: 30px;
+}
+*/
+
+#loginBtn {
+    width: 100px;
+    background-color: #ff69b4;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#buttons {
+    width:800px;
+    margin:auto 0;
+    text-align: center;
+}
+
+input[type=text]:focus{
+  background-color: lightblue;
+}
+
+input[type=text]{
+  width: 80%;
+  border: 2px solid dimgray;
+  border-radius: 2px;
+  margin-left: 30px;
+}
+
+input[type=password]{
+  width: 80%;
+  border: 2px solid dimgray;
+  border-radius: 2px;
+  margin-left: 30px;
+}
+
+input[type=password]:focus{
+  background-color: lightblue;
+}
