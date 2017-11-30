@@ -1,10 +1,24 @@
-<div class="calendar-container">
-  <div id="calendar" class="calendar"></div>
+<div id="user-courses" class="courses-container">
+  <input
+    id="course-search-box"
+    class="courses-search-box"
+    placeholder="Enter course ID"
+    onfocusin="courseSelector.searchCoursesList.slideDown(500);"
+    onfocusout="courseSelector.searchCoursesList.slideUp(500);"/>
+  <div id="search-courses-list" class="search-courses-list"></div>
+  <div id="user-courses-list" class="courses-list"></div>
 </div>
-<div class="courses-container">
-  <h3 class="center-text">Courses</h3>
-  <input id="course-search-box" placeholder="Enter course ID" style="width: 100%; margin: 5px 0;">
-  <button onclick="findCourse()" id="searchBtn" style="width: 100%; margin: 5px auto; height: 30px;">Find Course</button>
-  <p id="demo"></p>
-  <div id="courses-list" class="courses-list"></div>
+<div id="sections" class="courses-container hidden">
+  <div>
+    <p
+      class="back-button accent primary-bg-hover text-on-primary-hover"
+      onclick="courseSelector.navBack()">&#8249;</p>
+    <div class="accent">
+      <h3 id="sections-title-course" class="center-text">MAT237</h3>
+    </div>
+  </div>
+  <div id="sections-list" class="courses-list"></div>
+</div>
+<div class="calendar-container">
+  <div id="user-calendar" class="calendar"></div>
 </div>

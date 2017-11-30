@@ -3,14 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Course Planner</title>
+    <title>ShareSchedule</title>
 
     <!-- TODO add an icon -->
     <link rel="icon" href="icon.ico"/>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300" rel="stylesheet">
-  
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans" rel="stylesheet">
+
+
     <!--Bootstrap-->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -25,14 +26,15 @@
 
   </head>
   <body>
-    <div id="navbar" class="navbar-container" id="navbar-container">
-    </div>
+
 
     <div class="page-container">
-      <div id="login" class="page"></div>
-      <div id="courses" class="page"></div>
-      <div id="friends" class="page"></div>
+      <div id="login" class="page hidden"></div>
+      <div id="courses" class="page hidden"></div>
+      <div id="friends" class="page hidden"></div>
+      <div id="about" class="page hidden"></div>
     </div>
+    <div id="navbar" class="navbar-container primary-bg"></div>
   </body>
 
 
@@ -46,7 +48,7 @@
 
   <script src='resources/fullcalendar/lib/moment.min.js'></script>
   <script src='resources/fullcalendar/fullcalendar.js'></script>
-  
+
 	<!--Bootstrap-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 

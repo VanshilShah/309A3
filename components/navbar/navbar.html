@@ -1,12 +1,18 @@
 
-<div class="navbar">
-  <div>
-    <a id="navbar-login" class="navbar-item center padding-m fill no-decor text-on-primary" onclick="showPage('login');" href="#"> Login</a>
+<div class="navbar primary-bg">
+  <div class="navbar-title" style="margin-left: 20px;">
+    <h2 class="text-on-primary fill-v navbar-text-center">
+      ShareSchedule
+    </h2>
   </div>
-  <div>
-    <a id="navbar-courses" class="navbar-item center padding-m fill no-decor text-on-primary" onclick="showPage('courses');" href="#"> Courses</a>
+  <div class="navbar-item fill-v">
+    <a id="navbar-about" class="navbar-link navbar-text-center center padding-w-b padding-v-s fill no-decor text-on-primary text-on-primary-hover" onclick="navbar.showPage('about');" href="#"> About</a>
   </div>
-  <div>
-    <a id="navbar-friends" class="navbar-item center padding-m fill no-decor text-on-primary" onclick="showPage('friends');" href="#"> Friends</a>
+  <div class="navbar-item fill-v">
+    <a id="navbar-courses" class="navbar-link navbar-text-center center padding-w-b padding-v-s fill no-decor text-on-primary text-on-primary-hover" onclick="navbar.showPage('courses');" href="#"> Courses</a>
   </div>
+  <div class="navbar-item fill-v">
+    <a id="navbar-friends" class="navbar-link navbar-text-center center padding-w-b padding-v-s fill no-decor text-on-primary text-on-primary-hover" onclick="navbar.showPage('login');" href="#"> Friends</a>
+  </div>
+  <div class="clear"></div>
 </div>

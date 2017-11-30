@@ -4,42 +4,23 @@ div {
 }
 */
 
-#loginBtn {
-    width: 100px;
-    background-color: #ff69b4;
-    border: none;
-    color: white;
-    cursor: pointer;
+.huge-text{
+  font-size: 50px;
+  text-align: center;
+  padding: 20px;
 }
 
-button:hover {
-    opacity: 0.8;
+.login-container{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: stretch;
 }
 
-#buttons {
-    width:800px;
-    margin:auto 0;
-    text-align: center;
-}
-
-input[type=text]:focus{
-  background-color: lightblue;
-}
-
-input[type=text]{
-  width: 80%;
-  border: 2px solid dimgray;
-  border-radius: 2px;
-  margin-left: 30px;
-}
-
-input[type=password]{
-  width: 80%;
-  border: 2px solid dimgray;
-  border-radius: 2px;
-  margin-left: 30px;
-}
-
-input[type=password]:focus{
-  background-color: lightblue;
+.fb-login{
+  margin: auto auto;
+  text-align-last: center;
+  width: 100%;
 }

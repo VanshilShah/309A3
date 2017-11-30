@@ -1,13 +1,21 @@
-<p>
-  <form>
-  <div>Username:</div>
-  <input type="text" name="Username">
-  <br>
-  <div>Password:</div>
-  <input type="password" name="Password">
-  <br><br>
-  <div id="buttons">
-    <input type="submit" value="Login" id="loginBtn">
+<div class="accent-bg login-container">
+  <h1 class="text-on-primary margin-b huge-text">Login with Facebook to share your schedule</h1>
+  <div class="fb-login">
+    <div
+      class="fb-login-button"
+      data-max-rows="1"
+      data-size="large"
+      data-button-type="continue_with"
+      data-show-faces="false"
+      data-auto-logout-link="false"
+      data-use-continue-as="true"
+      onclick="navbar.showPage('friends');">
+    </div>
   </div>
-  </form>
-</p>
+
+  <div class="fill-w margin-v-b">
+    <button class="text-m padding-m primary-bg grey-bg-hover navbar-link no-decor text-on-primary text-on-primary-hover center" onclick="navbar.showPage('friends');" href="#">Bypass Login</button>
+  </div>
+</div>
+
+<div id="fb-root"></div>

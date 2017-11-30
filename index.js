@@ -15,8 +15,11 @@ app.listen(port, function() {
 });
 console.log('server is running');
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
+app.use(express.static(__dirname + '/'));
+//Store all HTML files in view folder.
+app.use(express.static(__dirname + '/'));
+//Store all JS and CSS in Scripts folder.
+
 // instruct express to server up static assets
 app.use(express.static('public'));
 
@@ -24,5 +27,5 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.get('/', function(req, res) {//this block defines what our server will do when it receives a request at the url: team188.com/
-  res.render('index', {});
+  res.sendFile('./index.html');
 });
