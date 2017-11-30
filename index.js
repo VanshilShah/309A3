@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
 var moment = require('moment');
-//var postgres = require('./postgres_client.js');
+var postgres = require('./postgres_client.js');
 var jwt = require('jsonwebtoken');
 
 // Set server port

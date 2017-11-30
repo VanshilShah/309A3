@@ -3,11 +3,11 @@ var exports = module.exports = {};
 var pg = require('pg');
 
 var config = {
-  host: '',
+  host: 'ec2-23-21-155-53.compute-1.amazonaws.com',
   port: 5432,
-  user: '',
-  password: '',
-  database: '',
+  user: 'aczwartnbdscwn',
+  password: process.env.DB_PASS || "",
+  database: 'dfoti1pjkj320p',
 };
 
 pg.defaults.ssl = true;
