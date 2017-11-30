@@ -26,3 +26,22 @@ pool.connect(function(err, client, done) {
 pool.on('error', function (err, client) {
   console.error('idle client error', err.message, err.stack)
 });
+
+exports.getSomething = function(some_argument, response){
+  console.log("getsomething called");
+  var values = [some_argument];
+
+  var query = "SELECT * FROM public.\"<tablename>\" WHERE somecolumn = $1";
+  pool.query(query, values, function (err, res) {
+    if (err){
+      console.log(err);
+      response.send(err);
+      return
+    }
+
+    var rows = res.rows;
+    response.send({"rows": rows});
+
+  });
+
+}

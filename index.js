@@ -29,3 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.get('/', function(req, res) {//this block defines what our server will do when it receives a request at the url: team188.com/
   res.sendFile('./index.html');
 });
+
+app.get('/somepath', function(req, res){
+  postgres.getSomething("somearguemnt", res);
+});
