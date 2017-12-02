@@ -1,5 +1,6 @@
 <div class="accent-bg login-container">
   <h1 class="text-on-primary margin-b huge-text">Login with Facebook to share your schedule</h1>
+  <br></br>
   <div class="fb-login">
     <div
       class="fb-login-button"
@@ -9,13 +10,14 @@
       data-show-faces="false"
       data-auto-logout-link="false"
       data-use-continue-as="true"
-      onclick="navbar.showPage('friends');">
+      onlogin="login.gotoFriendsIfLoggedIn()"
+      >
     </div>
   </div>
 
-  <div class="fill-w margin-v-b">
-    <button class="text-m padding-m primary-bg grey-bg-hover navbar-link no-decor text-on-primary text-on-primary-hover center" onclick="navbar.showPage('friends');" href="#">Bypass Login</button>
-  </div>
+  <!-- <div class="fill-w margin-v-b"> -->
+    <!-- <button class="text-m padding-m primary-bg grey-bg-hover navbar-link no-decor text-on-primary text-on-primary-hover center" onclick="navbar.showPage('friends');" href="#">Bypass Login</button> -->
+  <!-- </div> -->
 </div>
 
 <div id="fb-root"></div>

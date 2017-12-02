@@ -20,7 +20,10 @@ window.fbAsyncInit = function() {
         version          : 'v2.11'
     });
     
-    console.log('fb init called');
+    checkLoginState(function (response) {
+        console.log('Facebook API initialized:');
+        console.log(response);
+    })
 };
 
 (function(d, s, id){
@@ -132,11 +135,12 @@ function main() {
     console.log('main function called.')
 }
 
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    console.log(response);
-    statusChangeCallback(response);
-  });
+function checkLoginState(callback) {
+    FB.getLoginStatus(function(response) {
+        console.log('FB login state check:');
+        console.log(response);
+        callback(response);
+    });
 }
 
 function loadComponents() {
