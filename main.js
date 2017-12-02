@@ -8,6 +8,29 @@ var components = [
     'friends'
 ]
 
+var FB_APP_ID = '1664665356936852'
+var DOMAIN_NAME = 'https://shareschedule.herokuapp.com/'
+
+// initialize facebook API
+window.fbAsyncInit = function() {
+    FB.init({
+        appId            : FB_APP_ID,
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.11'
+    });
+    
+    console.log('fb init called');
+};
+
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 function newCalendar(elementID, clickHandler) {
     var obj = {}
     var calendarElement = $('#' + elementID)

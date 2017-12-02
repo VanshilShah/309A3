@@ -18,7 +18,7 @@ var navbar = (function () {
         $('#' + pageName).show()
         $('#navbar-' + pageName).addClass('navbar-item-active')
         if(pageName === "login"){
-          $('#navbar-friends').addClass('navbar-item-active')
+            $('#navbar-friends').addClass('navbar-item-active')
         }
         $(window).trigger('resize')
     }
