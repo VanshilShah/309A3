@@ -27,9 +27,10 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.get('/', function(req, res) {//this block defines what our server will do when it receives a request at the url: team188.com/
-  res.sendFile('./index.html');
+    // res.sendFile('./index.html');
+    res.send('test string')
 });
 
 app.get('/somepath', function(req, res){
-  postgres.getSomething("somearguemnt", res);
+    postgres.getSomething("somearguemnt", res);
 });
