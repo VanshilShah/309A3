@@ -14,7 +14,6 @@ app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
 });
 console.log('server is running');
-console.log('what the actual fuck');
 
 app.use(express.static(__dirname + '/'));
 //Store all HTML files in view folder.
@@ -28,12 +27,10 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.get('/', function(req, res) {//this block defines what our server will do when it receives a request at the url: team188.com/
-    // res.sendFile('./index.html');
-    res.send('test string')
-    console.log('im sending the test string what the FUCK');
+    res.sendFile('./index.html');
+    // TODO for some reason this can't be changed
 });
 
 app.get('/somepath', function(req, res){
-    console.log('what the fuck what the fuck');
     postgres.getSomething("somearguemnt", res);
 });
