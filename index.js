@@ -14,6 +14,7 @@ app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
 });
 console.log('server is running');
+console.log('what the actual fuck');
 
 app.use(express.static(__dirname + '/'));
 //Store all HTML files in view folder.
