@@ -34,5 +34,6 @@ app.get('/', function(req, res) {//this block defines what our server will do wh
 });
 
 app.get('/somepath', function(req, res){
+    console.log('what the fuck what the fuck');
     postgres.getSomething("somearguemnt", res);
 });
