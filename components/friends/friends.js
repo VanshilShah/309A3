@@ -106,6 +106,8 @@ var friendsList = (function(){
             console.log('clean up friends list');
         }
     }
+    
+    fbInterface.addObserver(onUserChanged)
 
     return obj
 })()
