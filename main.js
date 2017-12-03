@@ -179,7 +179,7 @@ function requestPromise(url, data, type) {
         $.ajax({
             type: type || 'GET',
             dataType: 'json',
-            data: JSON.stringify(data) || {},
+            data: data || {},
             url: buildURLString(url)
             // success: function (data, textStatus, jqXHR) {
                 // console.log(data)
@@ -595,6 +595,9 @@ function newProfileData(isMainUser) {
                 // the user does not exist
                 alert('Saving data failed.')
                 console.log(err);
+            }
+            else {
+                obj.userExists = true
             }
             endLoading()
         })
