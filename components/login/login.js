@@ -6,7 +6,7 @@ var login = (function(){
         $('#fb-login-btn').addClass('hidden')
         
         fbInterface.checkLoginState(function (response) {
-            if (fbCurrentState && fbCurrentState.status == 'connected') {
+            if (response && response.status == 'connected') {
                 $('#navbar-logout').removeClass('hidden')
                 navbar.showPage('friends')
             }
