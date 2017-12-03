@@ -108,12 +108,19 @@ function newCalendar(elementID, clickHandler) {
     return obj
 }
 
-function main() {
-    loadComponents()
+function main(callback) {
+    loadComponents(callback)
     console.log('main function called.')
 }
 
-function loadComponents() {
+function loadComponents(callback) {
+    count = 0
+    function onCount() {
+        count++
+        if (count == components.length) {
+            callback()
+        }
+    }
     for (var i = 0, len = components.length; i < len; i++) {
         (function () {
         var componentName = components[i]
@@ -127,7 +134,7 @@ function loadComponents() {
 
         $('#' + componentName).load(componentPath + '.html', function () {
             $.getScript(componentPath + '.js', function (data, status) {
-
+                onCount()
             })
         })
         })()
@@ -446,25 +453,27 @@ var fbInterface = (function(){
     return obj
 })()
 
-$(document).ready(main);
+$(document).ready(function () {
+    main(function () {
+        // initialize facebook API
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId:   FB_APP_ID,
+                cookie:  true,
+                xfbml:   true,
+                version: 'v2.11'
+            });
+            
+            console.log('Facebook API initialized.');
+        };
 
-// initialize facebook API
-window.fbAsyncInit = function() {
-    FB.init({
-        appId:   FB_APP_ID,
-        cookie:  true,
-        xfbml:   true,
-        version: 'v2.11'
-    });
-    
-    console.log('Facebook API initialized.');
-};
-
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    })
+});
 
