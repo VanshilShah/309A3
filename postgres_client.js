@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-var pg = request('pg');
+const pg = request('pg');
 
 var config = {
   host: 'ec2-23-21-155-53.compute-1.amazonaws.com',
@@ -48,7 +48,6 @@ exports.getSomething = function(some_argument, response){
     response.send({"rows": rows});
 
   });
-
 }
 
 function lookupUser(request, res, next) {
