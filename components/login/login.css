@@ -20,7 +20,9 @@ div {
 }
 
 .fb-login{
-  margin: auto auto;
-  text-align-last: center;
-  width: 100%;
+    width: 100%;
+}
+
+.fb-login-button{
+    margin: auto auto;
 }

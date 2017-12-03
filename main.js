@@ -440,6 +440,8 @@ window.fbAsyncInit = function() {
     });
     
     console.log('Facebook API initialized.');
+
+    $(document).ready(main);
 };
 
 (function(d, s, id){
@@ -465,5 +467,3 @@ var fbInterface = (function(){
 
     return obj
 })()
-
-$(document).ready(main);
