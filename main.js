@@ -302,6 +302,8 @@ function newProfileData(isMainUser) {
             */
             courses: {},
         }
+        
+        // this doesn't dispatch change.
     }
     obj.clearData()
 
@@ -641,14 +643,20 @@ function newProfileData(isMainUser) {
         })
         .then(function (data) {
             if (!isMainUser
-                || $.isEmptyObject(obj.data.courses)
+                || !data
+                || $.isEmptyObject(data.courses)
                 || (
                     obj.userExists
                     &&
                     confirm('Do you want to load your existing schedule?')
                 )
             ) {
-                obj.data.courses = data.courses
+                if (data) {
+                    obj.data = data
+                }
+                else {
+                    obj.clearData()
+                }
             }
             
             // TODO load background friends
