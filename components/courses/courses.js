@@ -251,7 +251,6 @@ var cobaltAPI = (function () {
     var fetching = false
     var queued = null
 
-    var apiKey = 'yOm6EunUkWMKPJw2NBCYtbclohWSkHqp'
     var entries = 25
 
     function dayOfWeek(name) {
@@ -316,7 +315,7 @@ var cobaltAPI = (function () {
             }
             return
         }
-        
+
         queued = null
 
         fetching = true
@@ -339,11 +338,10 @@ var cobaltAPI = (function () {
         }
 
         var url = {
-            url: 'https://cobalt.qas.im/api/1.0/courses/filter',
+            url: '/courses/filter',
             qs: {
                 q: filterString,
-                limit: entries,
-                key: apiKey
+                limit: entries
             }
         }
 
@@ -379,7 +377,7 @@ var cobaltAPI = (function () {
             }
 
             callback(data)
-            
+
             if (queued) {
                 obj.getCourses(queued.query, queued.terms, queued.callback)
             }
@@ -389,10 +387,9 @@ var cobaltAPI = (function () {
 
             console.log('data fetch failed.');
             console.log(err)
-            alert('Data fetching failed.\nTry \'chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security\' to bypass Same Origin Policy.')
 
             callback(null)
-            
+
             if (queued) {
                 obj.getCourses(queued.query, queued.terms, queued.callback)
             }
