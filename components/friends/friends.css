@@ -11,6 +11,12 @@
     flex-direction: column;
 }
 
+.friend-image {
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+}
+
 .friends-list {
     padding: 10px;
     height: 100%;

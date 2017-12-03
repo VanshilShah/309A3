@@ -77,6 +77,7 @@ exports.getUserData = function (userID, callback) {
 
 exports.insertUserData = function (userID, data, callback) {
     var sql = 'INSERT INTO public.user (id, data) VALUES (($1), ($2))';
+    console.log(userID, data);
     if (!userID || !data) {
         callback(null, 'error: request contains null data')
     }
@@ -127,6 +128,7 @@ exports.insertUserData = function (userID, data, callback) {
 
 exports.updateUserData = function (userID, data, callback) {
     var sql = 'UPDATE public.user SET data = ($2) WHERE id = ($1)';
+    console.log(userID, data);
     if (!userID || !data) {
         callback(null, 'error: request contains null data')
     }

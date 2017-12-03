@@ -82,7 +82,7 @@ var friends = (function(){
     var friendItem = function (friend) {
         return `
         <div class="friend-item primary-bg accent-bg-hover user-course-item" onclick="displayFriendSchedule('${friend.id}')">
-            <img src="${friend.picture.data.url}"></img>
+            <img class="friend-image" src="${friend.picture.data.url}"></img>
             <p class="flex-item center-text">${friend.name}</p>
         </div>
         `
