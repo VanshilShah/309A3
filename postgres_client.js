@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-var pg = request('pg');
+var pg = require('pg');
 
 var config = {
     host: 'ec2-23-21-155-53.compute-1.amazonaws.com',
