@@ -32,7 +32,7 @@ var login = (function(){
         }
     }
     
-    login.ifLoggedIn()
+    obj.ifLoggedIn()
     
     return obj
 })()
