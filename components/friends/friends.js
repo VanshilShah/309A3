@@ -74,36 +74,41 @@ var friendsArray = [
 var friendCalendar = newCalendar('friend-calendar', null)
 friendData.addObserver(friendCalendar.onDataChanged)
 
-var friendsList = (function(){
+var friends = (function(){
     var obj = {}
+    
+    var friendsList = $('#friends-list')
     
     var friendItem = function (friend) {
         return `
-        <div class="course-item primary-bg accent-bg-hover user-course-item" onclick="displayFriendSchedule('${friend.id}')">
-            <img class="center-text" src="${friend.picture.data.url}"></img>
-            <p class="center-text">${friend.name}</p>
+        <div class="friend-item primary-bg accent-bg-hover user-course-item" onclick="displayFriendSchedule('${friend.id}')">
+            <img src="${friend.picture.data.url}"></img>
+            <p class="flex-item center-text">${friend.name}</p>
         </div>
         `
     }
+    
+    obj.clearFriends = function () {
+        friendsList.empty()
+    }
 
-    obj.loadFriends = function(element){
+    obj.loadFriends = function(data){
+        obj.clearFriends()
+        
         for(var i = 0; i < friendsArray.length; i++){
-            // Add it to the list:
-            element.append(friendItem(friendsArray[i]));
+            friendsList.append(friendItem(data[i]))
         }
     }
 
-    obj.loadFriends($('#friends-list'));
+    // obj.loadFriends($('#friends-list'));
     
     function onUserChanged(userID) {
         if (userID) {
             fbInterface.getFriends(function (data) {
-                console.log('friends data');
-                console.log(data);
+                obj.loadFriends(data);
             })
         } else {
-            // TODO clean friends list so there are no friends
-            console.log('clean up friends list');
+            obj.clearFriends()
         }
     }
     
@@ -113,9 +118,10 @@ var friendsList = (function(){
 })()
 
 function displayFriendSchedule(friendID) {
-    alert('Cannot display friend\'s schedule:\nNo backend implemented yet.')
+    // alert('Cannot display friend\'s schedule:\nNo backend implemented yet.')
+    friendData.onUserChanged(friendID, null)
 }
 
 function findFriends(){
-    alert("Cannot find friends:\nNo backend implemented yet.");
+    alert("Not implemented yet.");
 }

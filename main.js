@@ -163,9 +163,9 @@ var fbInterface = (function(){
                 ) ? response.authResponse.userID : null
             
             if (obj.currentUserID !== newUserID) {
+                obj.oldUserID = obj.currentUserID
                 obj.currentUserID = newUserID
                 obj.dispatchChanges()
-                obj.oldUserID = obj.currentUserID
             }
         });
     }
@@ -223,6 +223,8 @@ function newProfileData(isMainUser) {
     var conflictAlertOn = false
     var bonusCourseID = null
     var bonusSectionCode = null
+    
+    obj.userID = null
 
     obj.data = {
         /*
@@ -501,6 +503,12 @@ function newProfileData(isMainUser) {
     }
     
     obj.onUserChanged = function (userID, oldUserID) {
+        if (userID === obj.userID) {
+            return
+        }
+        
+        obj.userID = userID
+        
         if (!userID) {
             if (!isMainUser) {
                 // TODO remove courses

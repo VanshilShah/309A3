@@ -10,6 +10,17 @@
     flex-direction: column;
 }
 
+.friend-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.flex-item {
+    flex: 1;
+}
+
 @media screen and (max-width: 720px) {
     .friends-container {
         position: relative;
