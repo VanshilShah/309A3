@@ -90,3 +90,37 @@ app.delete('/users/:id', function(req, res){
         res.send('null')
     })
 });
+
+
+
+var messages = []
+var latestMessageID = 0
+
+
+app.get('/api/messages', function(req, res){
+    res.send(JSON.stringify(messages))
+});
+
+app.post('/api/messages', function(req, res){
+    messages.push({
+        id: latestMessageID++,
+        message: req.body
+    })
+    
+    res.send('success')
+});
+
+app.delete('/api/messages/:id', function(req, res){
+    var i = 0;
+    for (i = 0, len = messages.length; i < len; i++) {
+        var message = messages[i]
+        if (message.id === req.params.id) {
+            break
+        }
+    }
+    if (i < messages.length) {
+        messages.splice(i, 1)
+    }
+    
+    res.send('success')
+});

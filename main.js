@@ -15,7 +15,7 @@ var loadingCount = 0
 
 function startLoading() {
     if (loadingCount === 0) {
-        $('loading-div').removeClass('hidden')
+        $('#loading-div').removeClass('hidden')
     }
     loadingCount++
 }
@@ -24,7 +24,7 @@ function endLoading() {
     if (loadingCount > 0) {
         loadingCount--
         if (loadingCount === 0) {
-            $('loading-div').addClass('hidden')
+            $('#loading-div').addClass('hidden')
         }
     }
 }

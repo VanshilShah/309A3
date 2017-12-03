@@ -17,9 +17,17 @@
     width: 50px;
 }
 
+.msg-container {
+    height: 300px;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #999;
+}
+
 .friends-list {
     padding: 10px;
-    height: 100%;
+    flex: 1;
     background-color: #ddd;
     overflow: auto;
 }
