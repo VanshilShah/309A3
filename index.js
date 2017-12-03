@@ -40,15 +40,15 @@ app.get('/somepath', function(req, res){
 
 
 app.get('/courses/filter', function(req, res){
-  console.log(req.url);
-  request.get({
-      url: "https://cobalt.qas.im/api/1.0" + req.url + "&key=" + cobaltKey,
-  }, function(err, resp){
-    if (err){
-      console.log(err);
-    }
-    res.send(resp.body);
-    console.log(resp.body);
-  });
+    console.log(req.url);
+    request.get({
+        url: "https://cobalt.qas.im/api/1.0" + req.url + "&key=" + cobaltKey,
+    }, function(err, resp){
+        if (err){
+            console.log(err);
+        }
+        res.send(resp.body);
+        console.log(resp.body);
+    });
 
 });
