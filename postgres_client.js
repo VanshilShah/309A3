@@ -15,7 +15,7 @@ pg.defaults.ssl = true;
 var pool = new pg.Pool(config);
 
 function initDatabase() {
-    var query = "CREATE TABLE IF NOT EXISTS user (user_id TEXT PRIMARY KEY, data TEXT);"
+    var query = "CREATE TABLE IF NOT EXISTS public.user (user_id TEXT PRIMARY KEY, data TEXT);"
     pool.query(query, [], function (err, results) {
         if (err){
             console.log(err);
@@ -60,7 +60,7 @@ exports.lookupUser = function (request, res, next) {
 
   var userId = request.params.id;
 
-  var sql = 'SELECT * FROM user WHERE user_id = $1';
+  var sql = 'SELECT * FROM public.user WHERE user_id = $1';
   pool.query(sql, [ userId ], function(err, results) {
     if (err) {
       console.error(err);
@@ -80,7 +80,7 @@ exports.lookupUser = function (request, res, next) {
 }
 
 exports.insertUser = function (request, res) {
-  var sql = 'INSERT INTO user (user_id, courses) VALUES ($1,$2) RETURNING user_id';
+  var sql = 'INSERT INTO public.user (user_id, courses) VALUES ($1,$2) RETURNING user_id';
 
   var data = [
     request.params.id,
@@ -97,7 +97,7 @@ exports.insertUser = function (request, res) {
       });
     }
     var new_user = result.rows[0].user_id;
-    var sql = 'SELECT * FROM user WHERE user_id = $1';
+    var sql = 'SELECT * FROM public.user WHERE user_id = $1';
     pool.query(sql, [ new_user ], function(err, result) {
       if (err) {
 
@@ -116,7 +116,7 @@ exports.insertUser = function (request, res) {
 }
 
 exports.updateUser = function (request, res) {
-  var sql = 'UPDATE user SET courses = ($2) WHERE user_id + ($1)';
+  var sql = 'UPDATE public.user SET courses = ($2) WHERE user_id + ($1)';
 
   var data = [
     request.params.id,
@@ -133,7 +133,7 @@ exports.updateUser = function (request, res) {
       });
     }
     var updated_user = result.rows[0].user_id;
-    var sql = 'SELECT * FROM user WHERE user_id = $1';
+    var sql = 'SELECT * FROM public.user WHERE user_id = $1';
     pool.query(sql, [ updated_user ], function(err, result) {
       if (err) {
 
@@ -152,7 +152,7 @@ exports.updateUser = function (request, res) {
 }
 
 exports.deleteUser = function (request, res) {
-  var sql = 'DELETE FROM user WHERE user_id = ($1)';
+  var sql = 'DELETE FROM public.user WHERE user_id = ($1)';
 
   var data = [
     request.params.id,
@@ -169,7 +169,7 @@ exports.deleteUser = function (request, res) {
       });
     }
     var updated_user = result.rows[0].user_id;
-    var sql = 'SELECT * FROM user ';
+    var sql = 'SELECT * FROM public.user ';
     pool.query(sql, [ updated_user ], function(err, result) {
       if (err) {
 
