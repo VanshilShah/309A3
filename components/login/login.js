@@ -8,6 +8,7 @@ var login = (function(){
         fbInterface.checkLoginState(function (response) {
             if (response && response.status == 'connected') {
                 $('#navbar-logout').removeClass('hidden')
+                $('#navbar-friends').text('Friends')
                 if (callback) {
                     callback()
                 }
@@ -27,6 +28,7 @@ var login = (function(){
         if (confirm("Are you sure you want to log out?")) {
             FB.logout(function (respose) {
                 $('#navbar-logout').addClass('hidden')
+                $('#navbar-friends').text('Log In')
                 navbar.showPage('login')
                 obj.ifLoggedIn(obj.gotoFriends)
             })

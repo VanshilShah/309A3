@@ -72,6 +72,7 @@ var friendsArray = [
   ];
 
 var friendCalendar = newCalendar('friend-calendar', null)
+friendData.addObserver(friendCalendar.onDataChanged)
 
 var friendsList = (function(){
     var obj = {}
@@ -93,6 +94,18 @@ var friendsList = (function(){
     }
 
     obj.loadFriends($('#friends-list'));
+    
+    function onUserChanged(userID) {
+        if (userID) {
+            fbInterface.getFriends(function (data) {
+                console.log('friends data');
+                console.log(data);
+            })
+        } else {
+            // TODO clean friends list so there are no friends
+            console.log('clean up friends list');
+        }
+    }
 
     return obj
 })()

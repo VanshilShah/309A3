@@ -189,8 +189,14 @@ var courseSelector = (function () {
     function onDataChanged(data) {
         obj.loadList(data.courses, obj.userCoursesList, obj.userCoursesData, obj.userCourseItem)
     }
+    
+    function onUserChanged(userID) {
+        obj.navHome()
+    }
 
     userData.addObserver(onDataChanged)
+    fbInterface.addObserver(onUserChanged)
+    
     obj.searchCoursesList.slideUp();
 
     return obj

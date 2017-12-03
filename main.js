@@ -141,7 +141,73 @@ function loadComponents(callback) {
     }
 }
 
-var userData = (function () {
+var fbInterface = (function(){
+    var obj = {}
+    var observers = []
+    
+    var loginState = null
+    
+    obj.currentUserID = null
+    obj.oldUserID = null
+    
+    obj.checkLoginState = function (callback) {
+        FB.getLoginStatus(function(response) {
+            loginState = response
+            console.log(response);
+            callback(response)
+            
+            var newUserID = (
+                response
+                && response.status === "connected"
+                && response.authResponse
+                ) ? response.authResponse.userID : null
+            
+            if (obj.currentUserID !== newUserID) {
+                obj.currentUserID = newUserID
+                obj.dispatchChanges()
+                obj.oldUserID = obj.currentUserID
+            }
+        });
+    }
+    
+    obj.getFriends = function (callback) {
+        FB.api(
+            // "/{user-id}/friends",
+            "me/friends?fields=picture,name,id",
+            function (response) {
+                if (response) {
+                    if (!response.error) {
+                        callback(response)
+                    }
+                    else {
+                        console.log('error getting friends:');
+                        console.log(response.error);
+                        callback(null)
+                    }
+                }
+                else {
+                    callback(null)
+                }
+            }
+        );
+    }
+    
+    obj.addObserver = function (handler) {
+        observers.push(handler)
+        handler(obj.data)
+    }
+
+    obj.dispatchChanges = function () {
+        for (var i = 0, len = observers.length; i < len; i++) {
+            observers[i](obj.currentUserID)
+        }
+    }
+
+
+    return obj
+})()
+
+function newProfileData(isMainUser) {
     var obj = {}
 
     var observers = []
@@ -171,7 +237,7 @@ var userData = (function () {
     obj.refreshCandidates = function () {
 
     }
-
+    
     function getSectionID(courseID, sectionCode) {
         return courseID + ':' + sectionCode
     }
@@ -433,25 +499,49 @@ var userData = (function () {
             observers[i](obj.data)
         }
     }
-
-    return obj
-})()
-
-var fbInterface = (function(){
-    var obj = {}
     
-    var loginState = null
-    
-    obj.checkLoginState = function (callback) {
-        FB.getLoginStatus(function(response) {
-            loginState = response
-            console.log(response);
-            callback(response)
-        });
+    obj.onUserChanged = function (userID, oldUserID) {
+        if (!userID) {
+            if (!isMainUser) {
+                // TODO remove courses
+            }
+            
+            // TODO remove background friends
+            
+            // TODO make sure changes are dispatched
+            
+            return
+        }
+        
+        // loading courses
+        // load only when: is not main user, or there isn't old user, or when user confirms
+        if (!isMainUser
+            || !oldUserID
+            || confirm('Do you want to load your existing schedule?')
+        ) {
+            // TODO load courses from database
+        }
+        
+        // TODO load background friends
+        
+        // TODO make sure changes are dispatched
     }
 
     return obj
-})()
+}
+
+var userData = newProfileData(true)
+fbInterface.addObserver(function (userID) {
+    userData.onUserChanged(userID, fbInterface.oldUserID)
+})
+
+var friendData = newProfileData(false)
+fbInterface.addObserver(function (userID) {
+    if (!userID) {
+        friendData.onUserChanged(null, null)
+    }
+})
+// TODO friend onUserChanged will be from manual clicking, and it CAN be null.
 
 $(document).ready(function () {
     main(function () {
