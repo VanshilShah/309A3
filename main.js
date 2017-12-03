@@ -11,30 +11,6 @@ var components = [
 var FB_APP_ID = '1664665356936852'
 var DOMAIN_NAME = 'https://shareschedule.herokuapp.com/'
 
-var fbCurrentState = null
-
-// initialize facebook API
-window.fbAsyncInit = function() {
-    FB.init({
-        appId            : FB_APP_ID,
-        autoLogAppEvents : true,
-        xfbml            : true,
-        version          : 'v2.11'
-    });
-    
-    checkLoginState(function (response) {
-        console.log('Facebook API initialized:');
-        console.log(response);
-    })
-};
-
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
 
 function newCalendar(elementID, clickHandler) {
     var obj = {}
@@ -135,13 +111,6 @@ function newCalendar(elementID, clickHandler) {
 function main() {
     loadComponents()
     console.log('main function called.')
-}
-
-function checkLoginState(callback) {
-    FB.getLoginStatus(function(response) {
-        fbCurrentState = response
-        callback(response)
-    });
 }
 
 function loadComponents() {
@@ -456,6 +425,44 @@ var userData = (function () {
         for (var i = 0, len = observers.length; i < len; i++) {
             observers[i](obj.data)
         }
+    }
+
+    return obj
+})()
+
+// initialize facebook API
+window.fbAsyncInit = function() {
+    FB.init({
+        appId            : FB_APP_ID,
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.11'
+    });
+    
+    fbInterface.checkLoginState(function (response) {
+        console.log('Facebook API initialized:');
+        console.log(response);
+    })
+};
+
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+var fbInterface = (function(){
+    var obj = {}
+    
+    var loginState = null
+    
+    obj.checkLoginState = function (callback) {
+        FB.getLoginStatus(function(response) {
+            loginState = response
+            callback(response)
+        });
     }
 
     return obj
