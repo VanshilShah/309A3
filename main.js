@@ -522,9 +522,9 @@ function newProfileData(isMainUser) {
         }
         
         // loading courses
-        // load only when: is not main user, or there isn't old user, or when user confirms
+        // load only when: is not main user, or if current user data empty, or when user confirms
         if (!isMainUser
-            || !oldUserID
+            || $.isEmptyObject(obj.data.courses)
             || confirm('Do you want to load your existing schedule?')
         ) {
             // TODO load courses from database
@@ -533,6 +533,10 @@ function newProfileData(isMainUser) {
         // TODO load background friends
         
         // TODO make sure changes are dispatched
+        
+        if (isMainUser) {
+            // TODO auto save
+        }
     }
 
     return obj
