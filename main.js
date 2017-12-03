@@ -638,7 +638,7 @@ function newProfileData(isMainUser) {
         startLoading()
         requestPromise(url, null, 'GET')
         .then(function (data) {
-            data = JSON.parse(data)
+            console.log(data);
             if (!data) {
                 // the user does not exist
                 obj.userExists = false
