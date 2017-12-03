@@ -27,7 +27,8 @@ var login = (function(){
         if (confirm("Are you sure you want to log out?")) {
             FB.logout(function (respose) {
                 $('#navbar-logout').addClass('hidden')
-                navbar.showPage('courses')
+                navbar.showPage('login')
+                obj.ifLoggedIn(obj.gotoFriends)
             })
         }
     }
