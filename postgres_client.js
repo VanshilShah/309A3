@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-const pg = request('pg');
+var pg = request('pg');
 
 var config = {
   host: 'ec2-23-21-155-53.compute-1.amazonaws.com',
@@ -27,10 +27,14 @@ pool.on('error', function (err, client) {
   console.error('idle client error', err.message, err.stack)
 });
 
+/*
 CREATE TEMP TABLE IF NOT EXISTS users (
   user_id text UNIQUE,
   courses text
 );
+*/
+
+
 
 exports.getSomething = function(some_argument, response){
   console.log("getsomething called");
