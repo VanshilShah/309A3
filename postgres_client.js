@@ -15,10 +15,7 @@ pg.defaults.ssl = true;
 var pool = new pg.Pool(config);
 
 function initDatabase() {
-    var query = `CREATE TABLE IF NOT EXISTS User (
-      user_id TEXT PRIMARY KEY,
-      data TEXT
-    );`
+    var query = "CREATE TABLE IF NOT EXISTS User (user_id TEXT PRIMARY KEY, data TEXT);"
     pool.query(query, [], function (err, results) {
         if (err){
             console.log(err);
