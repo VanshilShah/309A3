@@ -205,55 +205,6 @@ var courseSelector = (function () {
 var cobaltAPI = (function () {
     var obj = {}
 
-    function buildURLString(url) {
-        var result = url.url;
-        if (url.qs) {
-            result += '?'
-            var i = 0
-            for (var key in url.qs) {
-                if (i > 0) {
-                    result += '&'
-                }
-                result += key + '=' + url.qs[key]
-                i++
-            }
-        }
-        return result
-    }
-
-
-    function requestPromise(url) {
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-                type: 'GET',
-                dataType: 'json',
-                data: {},
-                url: buildURLString(url)
-                // success: function (data, textStatus, jqXHR) {
-                    // console.log(data)
-                // }
-            })
-            .done(function (data) {
-                resolve(data)
-            })
-            .fail(function (err) {
-                reject(err)
-            })
-            /* request.get(
-                url,
-                function (err, response, body) {
-
-                if (err) {
-                    reject(err)
-                }
-                else {
-                    var data = JSON.parse(body)
-                    resolve(data)
-                }
-            }); */
-        })
-    }
-
     var fetching = false
     var queued = null
 

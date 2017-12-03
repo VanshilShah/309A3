@@ -26,8 +26,8 @@ app.use(express.static(__dirname + '/'));
 // instruct express to server up static assets
 app.use(express.static('public'));
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+// app.use(bodyParser.json()); // for parsing application/json
+// app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.get('/', function(req, res) {//this block defines what our server will do when it receives a request at the url: team188.com/
     res.sendFile('./index.html');
@@ -50,5 +50,40 @@ app.get('/courses/filter', function(req, res){
         res.send(resp.body);
         console.log(resp.body);
     });
+});
 
+app.get('/users/:id', function(req, res){
+    postgres.getUserData(req.params.id, function (result, err) {
+        res.send(result)
+    })
+});
+
+app.post('/users/:id', function(req, res){
+    postgres.insertUserData(req.params.id, req.body, function (result, err) {
+        if (err) {
+            res.send(JSON.stringify(err))
+        }
+        
+        res.send('null')
+    })
+});
+
+app.put('/users/:id', function(req, res){
+    postgres.updateUserData(req.params.id, req.body, function (result, err) {
+        if (err) {
+            res.send(JSON.stringify(err))
+        }
+        
+        res.send('null')
+    })
+});
+
+app.delete('/users/:id', function(req, res){
+    postgres.updateUserData(req.params.id, function (result, err) {
+        if (err) {
+            res.send(JSON.stringify(err))
+        }
+        
+        res.send('null')
+    })
 });

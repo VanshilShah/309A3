@@ -18,6 +18,11 @@
     overflow: auto;
 }
 
+.vertical-margins {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .friend-item {
     display: flex;
     align-items: center;

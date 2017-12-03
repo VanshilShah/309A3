@@ -11,6 +11,23 @@ var components = [
 var FB_APP_ID = '1664665356936852'
 var DOMAIN_NAME = 'https://shareschedule.herokuapp.com/'
 
+var loadingCount = 0
+
+function startLoading() {
+    if (loadComponents === 0) {
+        $('loading-div').removeClass('hidden')
+    }
+    loadComponents++
+}
+
+function endLoading() {
+    if (loadComponents > 0) {
+        loadComponents--
+        if (loadComponents === 0) {
+            $('loading-div').addClass('hidden')
+        }
+    }
+}
 
 function newCalendar(elementID, clickHandler) {
     var obj = {}
@@ -139,6 +156,54 @@ function loadComponents(callback) {
         })
         })()
     }
+}
+
+function buildURLString(url) {
+    var result = url.url;
+    if (url.qs) {
+        result += '?'
+        var i = 0
+        for (var key in url.qs) {
+            if (i > 0) {
+                result += '&'
+            }
+            result += key + '=' + url.qs[key]
+            i++
+        }
+    }
+    return result
+}
+
+function requestPromise(url, data, type) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: type || 'GET',
+            dataType: 'json',
+            data: data || {},
+            url: buildURLString(url)
+            // success: function (data, textStatus, jqXHR) {
+                // console.log(data)
+            // }
+        })
+        .done(function (data) {
+            resolve(data)
+        })
+        .fail(function (err) {
+            reject(err)
+        })
+        /* request.get(
+            url,
+            function (err, response, body) {
+
+            if (err) {
+                reject(err)
+            }
+            else {
+                var data = JSON.parse(body)
+                resolve(data)
+            }
+        }); */
+    })
 }
 
 var fbInterface = (function(){
@@ -502,6 +567,10 @@ function newProfileData(isMainUser) {
         }
     }
     
+    obj.onCoursesLoaded = function () {
+        
+    }
+    
     obj.onUserChanged = function (userID, oldUserID) {
         if (userID === obj.userID) {
             return
@@ -511,18 +580,33 @@ function newProfileData(isMainUser) {
         
         if (!userID) {
             if (!isMainUser) {
-                // TODO remove courses
+                obj.data.courses = {}
             }
             
             // TODO remove background friends
             
-            // TODO make sure changes are dispatched
+            obj.dispatchChanges()
             
             return
         }
         
         // loading courses
         // load only when: is not main user, or if current user data empty, or when user confirms
+        // TODO only confirm when there exist data. it can very much not exist
+        
+        // TODO check if already exists
+        var url = {
+            url: '/users/' + userID,
+            qs: {}
+        }
+        requestPromise(url, null, 'GET')
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+        
         if (!isMainUser
             || $.isEmptyObject(obj.data.courses)
             || confirm('Do you want to load your existing schedule?')
@@ -532,7 +616,8 @@ function newProfileData(isMainUser) {
         
         // TODO load background friends
         
-        // TODO make sure changes are dispatched
+        // TODO the following add to bottom of callbacks
+        obj.dispatchChanges()
         
         if (isMainUser) {
             // TODO auto save

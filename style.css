@@ -286,6 +286,22 @@ button {
     flex: 1;
 }
 
+.loading-div {
+    z-index: 1000;
+    background-color: #55000000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+
+.loading-div-text {
+    display: block;
+    margin: auto;
+}
+
 @media screen and (max-width: 720px) {
     .calendar-container {
         position: relative;
@@ -304,17 +320,17 @@ button {
 
 @media screen and (max-width: 500px) {
 
-.navbar-container{
-  height: 160px;
-  width: 100%;
-}
+    .navbar-container{
+    height: 160px;
+    width: 100%;
+    }
 
-.page-container {
-    position: absolute;
-    top: 160px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
+    .page-container {
+        position: absolute;
+        top: 160px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
 
 }
