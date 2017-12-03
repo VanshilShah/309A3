@@ -105,7 +105,7 @@ var friends = (function(){
     function onUserChanged(userID) {
         if (userID) {
             fbInterface.getFriends(function (data) {
-                obj.loadFriends(data);
+                obj.loadFriends(data.data);
             })
         } else {
             obj.clearFriends()
