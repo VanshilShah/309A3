@@ -21,9 +21,9 @@ div {
 
 .fb-login{
     width: 100%;
+    text-align: center;
 }
 
 .fb-login-button{
     margin: auto auto;
-    text-align: center;
 }

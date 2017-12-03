@@ -432,16 +432,16 @@ var userData = (function () {
 
 // initialize facebook API
 window.fbAsyncInit = function() {
+    $(document).ready(main);
+    
     FB.init({
-        appId            : FB_APP_ID,
-        autoLogAppEvents : true,
-        xfbml            : true,
-        version          : 'v2.11'
+        appId:   FB_APP_ID,
+        cookie:  true,
+        xfbml:   true,
+        version: 'v2.11'
     });
     
     console.log('Facebook API initialized.');
-
-    $(document).ready(main);
 };
 
 (function(d, s, id){
