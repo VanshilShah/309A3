@@ -465,6 +465,8 @@ $(document).ready(function () {
             });
             
             console.log('Facebook API initialized.');
+            
+            login.ifLoggedIn()
         };
 
         (function(d, s, id){

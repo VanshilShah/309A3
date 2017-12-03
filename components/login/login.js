@@ -32,7 +32,5 @@ var login = (function(){
         }
     }
     
-    obj.ifLoggedIn()
-    
     return obj
 })()
