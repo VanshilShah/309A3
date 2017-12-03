@@ -430,10 +430,26 @@ var userData = (function () {
     return obj
 })()
 
+var fbInterface = (function(){
+    var obj = {}
+    
+    var loginState = null
+    
+    obj.checkLoginState = function (callback) {
+        FB.getLoginStatus(function(response) {
+            loginState = response
+            console.log(response);
+            callback(response)
+        });
+    }
+
+    return obj
+})()
+
+$(document).ready(main);
+
 // initialize facebook API
 window.fbAsyncInit = function() {
-    $(document).ready(main);
-    
     FB.init({
         appId:   FB_APP_ID,
         cookie:  true,
@@ -452,18 +468,3 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-var fbInterface = (function(){
-    var obj = {}
-    
-    var loginState = null
-    
-    obj.checkLoginState = function (callback) {
-        FB.getLoginStatus(function(response) {
-            loginState = response
-            console.log(response);
-            callback(response)
-        });
-    }
-
-    return obj
-})()
