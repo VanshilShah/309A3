@@ -71,8 +71,6 @@ exports.getUserData = function (userID, callback) {
             return
         }
         
-        console.log(results.rows[0].data);
-
         callback(results.rows[0].data, err)
     });
 }

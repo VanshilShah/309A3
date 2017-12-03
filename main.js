@@ -608,10 +608,6 @@ function newProfileData(isMainUser) {
     }
     
     obj.onUserChanged = function (userID, oldUserID) {
-        if (userID === obj.userID) {
-            return
-        }
-        
         obj.userID = userID
         
         if (!userID) {
@@ -658,7 +654,7 @@ function newProfileData(isMainUser) {
                     confirm('Do you want to load your existing schedule?')
                 )
             ) {
-                if (data) {
+                if (data && data.courses) {
                     obj.data = data
                 }
                 else {
