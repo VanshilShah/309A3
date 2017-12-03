@@ -55,9 +55,6 @@ pool.on('error', function (err, client) {
   // });
 
 // }
-=======
-  });
-}
 
 exports.lookupUser = function (request, res, next) {
 
