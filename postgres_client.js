@@ -37,7 +37,6 @@ pool.on('error', function (err, client) {
     console.error('idle client error', err.message, err.stack)
 });
 
-
 // exports.getSomething = function(some_argument, response){
   // console.log("getsomething called");
   // var values = [some_argument];
@@ -56,6 +55,9 @@ pool.on('error', function (err, client) {
   // });
 
 // }
+=======
+  });
+}
 
 exports.lookupUser = function (request, res, next) {
 
