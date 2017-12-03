@@ -643,8 +643,7 @@ function newProfileData(isMainUser) {
         })
         .then(function (data) {
             if (!isMainUser
-                || !data
-                || $.isEmptyObject(data.courses)
+                || $.isEmptyObject(obj.data.courses)
                 || (
                     obj.userExists
                     &&
