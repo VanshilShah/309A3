@@ -1,5 +1,4 @@
 .friends-container {
-    background-color: #cccccc;
     position: absolute;
     top: 10;
     bottom: 10;
@@ -22,4 +21,3 @@
         flex-direction: column;
     }
 }
-
