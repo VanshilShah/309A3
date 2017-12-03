@@ -440,7 +440,6 @@ window.fbAsyncInit = function() {
     });
     
     console.log('Facebook API initialized.');
-    login.ifLoggedIn()
 };
 
 (function(d, s, id){
