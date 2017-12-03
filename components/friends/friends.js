@@ -95,7 +95,7 @@ var friends = (function(){
     obj.loadFriends = function(data){
         obj.clearFriends()
         
-        for(var i = 0; i < friendsArray.length; i++){
+        for(var i = 0; i < data.length; i++){
             friendsList.append(friendItem(data[i]))
         }
     }
