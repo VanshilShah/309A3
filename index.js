@@ -64,7 +64,7 @@ app.post('/users/:id', function(req, res){
             res.send(JSON.stringify(err))
             return
         }
-        
+
         res.send('null')
     })
 });
@@ -75,7 +75,7 @@ app.put('/users/:id', function(req, res){
             res.send(JSON.stringify(err))
             return
         }
-        
+
         res.send('null')
     })
 });
@@ -86,7 +86,7 @@ app.delete('/users/:id', function(req, res){
             res.send(JSON.stringify(err))
             return
         }
-        
+
         res.send('null')
     })
 });
@@ -106,8 +106,8 @@ app.post('/api/messages', function(req, res){
         id: latestMessageID++,
         message: req.body
     })
-    
-    res.send('success')
+
+    res.send('success\n')
 });
 
 app.delete('/api/messages/:id', function(req, res){
@@ -121,6 +121,6 @@ app.delete('/api/messages/:id', function(req, res){
     if (i < messages.length) {
         messages.splice(i, 1)
     }
-    
-    res.send('success')
+
+    res.send('success\n')
 });
