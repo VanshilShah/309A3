@@ -3,7 +3,9 @@ var login = (function(){
     
     obj.gotoFriendsIfLoggedIn = function () {
         checkLoginState(function (response) {
-            console.log(response);
+            if (fbCurrentState && fbCurrentState.status == 'connected') {
+                navbar.showPage('friends')
+            }
         })
     }
     

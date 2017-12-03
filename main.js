@@ -11,6 +11,8 @@ var components = [
 var FB_APP_ID = '1664665356936852'
 var DOMAIN_NAME = 'https://shareschedule.herokuapp.com/'
 
+var fbCurrentState = null
+
 // initialize facebook API
 window.fbAsyncInit = function() {
     FB.init({
@@ -137,9 +139,8 @@ function main() {
 
 function checkLoginState(callback) {
     FB.getLoginStatus(function(response) {
-        console.log('FB login state check:');
-        console.log(response);
-        callback(response);
+        fbCurrentState = response
+        callback(response)
     });
 }
 
