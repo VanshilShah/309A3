@@ -288,7 +288,7 @@ button {
 
 .loading-div {
     z-index: 1000;
-    background-color: #55000000;
+    background-color: #00000055;
     position: fixed;
     top: 0;
     bottom: 0;

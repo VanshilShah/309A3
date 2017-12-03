@@ -14,16 +14,16 @@ var DOMAIN_NAME = 'https://shareschedule.herokuapp.com/'
 var loadingCount = 0
 
 function startLoading() {
-    if (loadComponents === 0) {
+    if (loadingCount === 0) {
         $('loading-div').removeClass('hidden')
     }
-    loadComponents++
+    loadingCount++
 }
 
 function endLoading() {
-    if (loadComponents > 0) {
-        loadComponents--
-        if (loadComponents === 0) {
+    if (loadingCount > 0) {
+        loadingCount--
+        if (loadingCount === 0) {
             $('loading-div').addClass('hidden')
         }
     }
@@ -179,7 +179,7 @@ function requestPromise(url, data, type) {
         $.ajax({
             type: type || 'GET',
             dataType: 'json',
-            data: data || {},
+            data: JSON.stringify(data) || {},
             url: buildURLString(url)
             // success: function (data, textStatus, jqXHR) {
                 // console.log(data)
@@ -596,6 +596,10 @@ function newProfileData(isMainUser) {
                 alert('Saving data failed.')
                 console.log(err);
             }
+            endLoading()
+        })
+        .catch(function () {
+            console.log(err);
             endLoading()
         })
     }

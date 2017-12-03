@@ -58,6 +58,9 @@ pool.on('error', function (err, client) {
 
 exports.getUserData = function (userID, callback) {
     var sql = 'SELECT data FROM public.user WHERE id = ($1)';
+    if (!userID) {
+        callback(null, 'error: request contains null data')
+    }
     pool.query(sql, [userID.toString()], function(err, results) {
         if (err) {
             console.error(err);
@@ -74,6 +77,9 @@ exports.getUserData = function (userID, callback) {
 
 exports.insertUserData = function (userID, data, callback) {
     var sql = 'INSERT INTO public.user (id, data) VALUES (($1), ($2))';
+    if (!userID || !data) {
+        callback(null, 'error: request contains null data')
+    }
     pool.query(sql, [userID.toString(), data.toString()], function(err, results) {
         if (err) {
             console.error(err);
@@ -121,6 +127,9 @@ exports.insertUserData = function (userID, data, callback) {
 
 exports.updateUserData = function (userID, data, callback) {
     var sql = 'UPDATE public.user SET data = ($2) WHERE id = ($1)';
+    if (!userID || !data) {
+        callback(null, 'error: request contains null data')
+    }
     pool.query(sql, [userID.toString(), data.toString()], function(err, results) {
         if (err) {
             console.error(err);
@@ -168,6 +177,9 @@ exports.updateUserData = function (userID, data, callback) {
 
 exports.deleteUserData = function (userID, callback) {
     var sql = 'DELETE FROM public.user WHERE id = ($1)';
+    if (!userID) {
+        callback(null, 'error: request contains null data')
+    }
     pool.query(sql, [userID.toString()], function(err, results) {
         if (err) {
             console.error(err);
