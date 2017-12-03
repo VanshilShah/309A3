@@ -458,6 +458,7 @@ var fbInterface = (function(){
     obj.checkLoginState = function (callback) {
         FB.getLoginStatus(function(response) {
             loginState = response
+            console.log(response);
             callback(response)
         });
     }
