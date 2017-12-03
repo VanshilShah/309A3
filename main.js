@@ -439,10 +439,8 @@ window.fbAsyncInit = function() {
         version          : 'v2.11'
     });
     
-    fbInterface.checkLoginState(function (response) {
-        console.log('Facebook API initialized:');
-        console.log(response);
-    })
+    console.log('Facebook API initialized.');
+    login.ifLoggedIn()
 };
 
 (function(d, s, id){

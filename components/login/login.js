@@ -1,20 +1,26 @@
 var login = (function(){
     var obj = {}
     
-    obj.gotoFriendsIfLoggedIn = function () {
+    obj.ifLoggedIn = function (callback) {
         $('#login-text').text('Loading ...')
         $('#fb-login-btn').addClass('hidden')
         
         fbInterface.checkLoginState(function (response) {
             if (response && response.status == 'connected') {
                 $('#navbar-logout').removeClass('hidden')
-                navbar.showPage('friends')
+                if (callback) {
+                    callback()
+                }
             }
             else {
                 $('#login-text').text('Login with Facebook to share your schedule')
                 $('#fb-login-btn').removeClass('hidden')
             }
         })
+    }
+    
+    obj.gotoFriends = function () {
+        navbar.showPage('friends')
     }
     
     obj.tryLogOut = function () {
