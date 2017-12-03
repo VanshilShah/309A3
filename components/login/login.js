@@ -9,5 +9,14 @@ var login = (function(){
         })
     }
     
+    obj.tryLogOut = function () {
+        if (confirm("Are you sure you want to log out?") == true) {
+            
+        }
+        else {
+            
+        } 
+    }
+    
     return obj
 })()

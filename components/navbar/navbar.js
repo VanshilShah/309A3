@@ -1,6 +1,8 @@
 
 var navbar = (function () {
     var obj = {}
+    
+    var currentPage = null
 
     var pages = [
         'login',
@@ -10,6 +12,8 @@ var navbar = (function () {
     ]
 
     obj.showPage = function (pageName) {
+        currentPage = pageName
+        
         for (var i = 0, len = pages.length; i < len; i++) {
             $('#' + pages[i]).removeClass('hidden')
             $('#' + pages[i]).hide()
@@ -21,6 +25,10 @@ var navbar = (function () {
             $('#navbar-friends').addClass('navbar-item-active')
         }
         $(window).trigger('resize')
+    }
+    
+    obj.getCurrentPage = function () {
+        return currentPage
     }
 
     obj.showPage('courses')
