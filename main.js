@@ -290,16 +290,20 @@ function newProfileData(isMainUser) {
     var bonusSectionCode = null
     
     obj.userID = null
+    obj.userExists = false
 
-    obj.data = {
-        /*
-        dictionary, key = courseID, value = {
-            data: course data object,
-            section: section code (null if not yet selected)
+    obj.clearData = function () {
+        obj.data = {
+            /*
+            dictionary, key = courseID, value = {
+                data: course data object,
+                section: section code (null if not yet selected)
+            }
+            */
+            courses: {},
         }
-        */
-        courses: {},
     }
+    obj.clearData()
 
     obj.refreshCandidates = function () {
 
@@ -565,10 +569,33 @@ function newProfileData(isMainUser) {
         for (var i = 0, len = observers.length; i < len; i++) {
             observers[i](obj.data)
         }
+        
+        obj.saveData()
     }
     
     obj.onCoursesLoaded = function () {
         
+    }
+    
+    obj.saveData = function () {
+        if (!isMainUser || !obj.userID) {
+            return
+        }
+        
+        var url = {
+            url: '/users/' + obj.userID,
+            qs: {}
+        }
+        startLoading()
+        requestPromise(url, obj.data, obj.userExists ? 'PUT' : 'POST')
+        .then(function (err) {
+            if (err) {
+                // the user does not exist
+                alert('Saving data failed.')
+                console.log(err);
+            }
+            endLoading()
+        })
     }
     
     obj.onUserChanged = function (userID, oldUserID) {
@@ -580,7 +607,7 @@ function newProfileData(isMainUser) {
         
         if (!userID) {
             if (!isMainUser) {
-                obj.data.courses = {}
+                obj.clearData()
             }
             
             // TODO remove background friends
@@ -599,29 +626,46 @@ function newProfileData(isMainUser) {
             url: '/users/' + userID,
             qs: {}
         }
+        startLoading()
         requestPromise(url, null, 'GET')
         .then(function (data) {
-            console.log(data);
+            if (!data) {
+                // the user does not exist
+                obj.userExists = false
+            }
+            else {
+                // the user already exists
+                obj.userExists = true
+            }
+            return data
+        })
+        .then(function (data) {
+            if (!isMainUser
+                || $.isEmptyObject(obj.data.courses)
+                || (
+                    obj.userExists
+                    &&
+                    confirm('Do you want to load your existing schedule?')
+                )
+            ) {
+                obj.data.courses = data.courses
+            }
+            
+            // TODO load background friends
+            
+            obj.dispatchChanges()
+            
+            if (isMainUser) {
+                // TODO auto save
+            }
+            
+            endLoading()
         })
         .catch(function (err) {
             console.log(err);
+            endLoading()
         })
         
-        if (!isMainUser
-            || $.isEmptyObject(obj.data.courses)
-            || confirm('Do you want to load your existing schedule?')
-        ) {
-            // TODO load courses from database
-        }
-        
-        // TODO load background friends
-        
-        // TODO the following add to bottom of callbacks
-        obj.dispatchChanges()
-        
-        if (isMainUser) {
-            // TODO auto save
-        }
     }
 
     return obj
