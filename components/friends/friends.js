@@ -132,6 +132,8 @@ $('#message-input-box').keydown(function (e) {
     }
     var code = e.keyCode || e.which
     if (code == 13){ // enter
+        $('#message-input-box').val('')
+        
         var url = {
             url: '/api/messages',
             qs: {}
@@ -141,7 +143,7 @@ $('#message-input-box').keydown(function (e) {
         }
         requestPromise(url, message, 'POST')
         .then(function (data) {
-            
+            refreshMessages()
         })
         .catch(function (err) {
             console.log(err);
@@ -149,7 +151,7 @@ $('#message-input-box').keydown(function (e) {
     }
 })
 
-setInterval(function () {
+function refreshMessages() {
     var url = {
         url: '/api/messages',
         qs: {}
@@ -167,5 +169,6 @@ setInterval(function () {
     .catch(function (err) {
         console.log(err);
     })
-    
-}, 1000)
+}
+
+setInterval(refreshMessages, 1000)
