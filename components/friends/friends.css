@@ -23,6 +23,7 @@
     overflow-y: auto;
     background-color: #fff;
     border: 1px solid #999;
+    color: #000;
 }
 
 .friends-list {
