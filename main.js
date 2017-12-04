@@ -82,8 +82,10 @@ function newCalendar(elementID, clickHandler) {
         '#655035',
         '#f589dc'
     ]
+    
+    var notFoundColor = '#cccccc'
 
-    obj.dataToEvents = function (data) {
+    obj.dataToEvents = function (data, background, colorDict) {
         var events = []
 
         var courses = data.courses
@@ -107,7 +109,13 @@ function newCalendar(elementID, clickHandler) {
                         title: courseInfo.data.code + '\n' + section.code + '\n' + section.times[i].location,
                         start: `2017-05-0${section.times[i].day}T${section.times[i].startStr}`,
                         end: `2017-05-0${section.times[i].day}T${section.times[i].endStr}`,
-                        color: colors[cnt]
+                        color: background ? (colorDict[courseID] ? colorDict[courseID] : notFoundColor) : colors[cnt]
+                    }
+                    if (background) {
+                        event.rendering = 'background'
+                    }
+                    else {
+                        colorDict[courseID] = colors[cnt]
                     }
                     events.push(event)
                 }
@@ -117,9 +125,21 @@ function newCalendar(elementID, clickHandler) {
 
         return events
     }
-
+    
+    function extend(a, b) {
+        for (var i = 0, len = b.length; i < len; i++) {
+            a.push(b[i])
+        }
+    }
+    
     obj.onDataChanged = function (data) {
-        obj.setEvents(obj.dataToEvents(data))
+        var colorDict = {}
+        var events = obj.dataToEvents(data.data, false, colorDict)
+        for (var i = 0, len = data.friends; i < len; i++) {
+            extend(events, obj.dataToEvents(data.friends[i], true, colorDict))
+        }
+        
+        obj.setEvents(events)
     }
 
     return obj
@@ -291,6 +311,8 @@ function newProfileData(isMainUser) {
     
     obj.userID = null
     obj.userExists = false
+    
+    obj.friends = []
 
     obj.clearData = function () {
         obj.data = {
@@ -569,7 +591,7 @@ function newProfileData(isMainUser) {
 
     obj.dispatchChanges = function () {
         for (var i = 0, len = observers.length; i < len; i++) {
-            observers[i](obj.data)
+            observers[i](obj)
         }
         
         obj.saveData()
@@ -601,7 +623,7 @@ function newProfileData(isMainUser) {
             }
             endLoading()
         })
-        .catch(function () {
+        .catch(function (err) {
             console.log(err);
             endLoading()
         })
@@ -615,7 +637,7 @@ function newProfileData(isMainUser) {
                 obj.clearData()
             }
             
-            // TODO remove background friends
+            obj.friends = []
             
             obj.dispatchChanges()
             
@@ -624,9 +646,7 @@ function newProfileData(isMainUser) {
         
         // loading courses
         // load only when: is not main user, or if current user data empty, or when user confirms
-        // TODO only confirm when there exist data. it can very much not exist
         
-        // TODO check if already exists
         var url = {
             url: '/users/' + userID,
             qs: {}
@@ -662,15 +682,46 @@ function newProfileData(isMainUser) {
                 }
             }
             
-            // TODO load background friends
-            
-            obj.dispatchChanges()
-            
             if (isMainUser) {
-                // TODO auto save
+                obj.friends = []
+                
+                // TODO load background friends
+                fbInterface.getFriends(function (data) {
+                    var count = 0
+                    for (var i = 0; i < data.data.length; i++) {
+                        var friendID = data.data[i].id
+                        var url = {
+                            url: '/users/' + friendID,
+                            qs: {}
+                        }
+                        startLoading()
+                        requestPromise(url, null, 'GET')
+                        .then(function (data) {
+                            count++
+                            if (data && data.courses) {
+                                obj.friends.push(data)
+                            }
+                            if (count == data.data.length) {
+                                obj.dispatchChanges()
+                                endLoading()
+                            }
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                            count++
+                            if (count == data.data.length) {
+                                obj.dispatchChanges()
+                                endLoading()
+                            }
+                        })
+                    }
+                })
+            }
+            else {
+                obj.dispatchChanges()
+                endLoading()
             }
             
-            endLoading()
         })
         .catch(function (err) {
             console.log(err);

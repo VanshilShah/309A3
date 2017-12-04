@@ -187,7 +187,7 @@ var courseSelector = (function () {
     }
 
     function onDataChanged(data) {
-        obj.loadList(data.courses, obj.userCoursesList, obj.userCoursesData, obj.userCourseItem)
+        obj.loadList(data.data.courses, obj.userCoursesList, obj.userCoursesData, obj.userCourseItem)
     }
     
     function onUserChanged(userID) {
