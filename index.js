@@ -47,8 +47,8 @@ app.get('/courses/filter', function(req, res){
         if (err){
             console.log(err);
         }
-        res.send(resp.body);
-        console.log(resp.body);
+        res.send(resp.data);
+        console.log(resp.data);
     });
 });
 
@@ -59,7 +59,7 @@ app.get('/users/:id', function(req, res){
 });
 
 app.post('/users/:id', function(req, res){
-    postgres.insertUserData(req.params.id, JSON.stringify(req.body), function (result, err) {
+    postgres.insertUserData(req.params.id, JSON.stringify(req.data), function (result, err) {
         if (err) {
             res.send(JSON.stringify(err))
             return
@@ -70,7 +70,7 @@ app.post('/users/:id', function(req, res){
 });
 
 app.put('/users/:id', function(req, res){
-    postgres.updateUserData(req.params.id, JSON.stringify(req.body), function (result, err) {
+    postgres.updateUserData(req.params.id, JSON.stringify(req.data), function (result, err) {
         if (err) {
             res.send(JSON.stringify(err))
             return
@@ -104,7 +104,7 @@ app.get('/api/messages', function(req, res){
 app.post('/api/messages', function(req, res){
     messages.push({
         id: latestMessageID++,
-        message: req.body
+        message: req.data
     })
 
     res.send('success\n')
