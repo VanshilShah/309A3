@@ -126,6 +126,29 @@ function findFriends(){
     alert("Not implemented yet.");
 }
 
+$('#message-input-box').keydown(function (e) {
+    if ($('#message-input-box').val().length === 0) {
+        return
+    }
+    var code = e.keyCode || e.which
+    if (code == 13){ // enter
+        var url = {
+            url: '/api/messages',
+            qs: {}
+        }
+        var message = {
+            body: $('#message-input-box').val()
+        }
+        requestPromise(url, message, 'POST')
+        .then(function (data) {
+            
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+})
+
 setInterval(function () {
     var url = {
         url: '/api/messages',
