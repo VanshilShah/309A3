@@ -701,7 +701,7 @@ function newProfileData(isMainUser) {
                             if (data && data.courses) {
                                 obj.friends.push(data)
                             }
-                            if (count == data.data.length) {
+                            if (count == fbFriends.data.length) {
                                 obj.dispatchChanges()
                                 endLoading()
                             }
@@ -709,7 +709,7 @@ function newProfileData(isMainUser) {
                         .catch(function (err) {
                             console.log(err);
                             count++
-                            if (count == data.data.length) {
+                            if (count == fbFriends.data.length) {
                                 obj.dispatchChanges()
                                 endLoading()
                             }
