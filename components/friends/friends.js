@@ -163,7 +163,7 @@ function refreshMessages() {
         if (data) {
             var msg = ''
             for (var i = 0, len = data.length; i < len; i++) {
-                msg += '<b>' + data[i].id + '</b>' + ': ' + data[i].message.body + '<br>'
+                msg += '<b>' + data[i].id + '</b>' + ': ' + data[i].message.data + '<br>'
             }
             $('#msg-text').html(msg)
         }

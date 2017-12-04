@@ -288,7 +288,7 @@ button {
 
 .loading-div {
     z-index: 1000;
-    background-color: #00000055;
+    /* background-color: #00000055; */
     position: fixed;
     top: 0;
     bottom: 0;
@@ -300,6 +300,9 @@ button {
 .loading-div-text {
     display: block;
     margin: auto;
+    padding: 15px 30px;
+    background-color: #00000088;
+    color: #fff;
 }
 
 @media screen and (max-width: 720px) {
