@@ -686,10 +686,10 @@ function newProfileData(isMainUser) {
                 obj.friends = []
                 
                 // TODO load background friends
-                fbInterface.getFriends(function (data) {
+                fbInterface.getFriends(function (fbFriends) {
                     var count = 0
-                    for (var i = 0; i < data.data.length; i++) {
-                        var friendID = data.data[i].id
+                    for (var i = 0; i < fbFriends.data.length; i++) {
+                        var friendID = fbFriends.data[i].id
                         var url = {
                             url: '/users/' + friendID,
                             qs: {}
