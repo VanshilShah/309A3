@@ -1,3 +1,5 @@
+[Click here for Live Link](https://shareschedule.herokuapp.com/)
+
 ## Group Members
 
 * Student 1: Tommy Xiang (xiangze / 1003068002)

@@ -1,11 +1,13 @@
 # Assignment 3: The Front-end
 
-[LIVE_LINK](https://shareschedule.herokuapp.com/)
+See Solutions.md for more info.
 
-## Instructions
+[Click here for Live Link](https://shareschedule.herokuapp.com/)
 
-```sh
-$ npm install -d
-$ export DB_PASS="<the database password>"
-$ npm start
-```
+<!-- ## Instructions -->
+
+<!-- ```sh -->
+<!-- $ npm install -d -->
+<!-- $ export DB_PASS="<the database password>" -->
+<!-- $ npm start -->
+<!-- ``` -->
