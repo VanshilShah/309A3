@@ -30,6 +30,7 @@ curl -X GET https://shareschedule.herokuapp.com/api/messages
 ```
 curl -H "Content-Type: application/json" -X POST -d '{"body":"<Message body here>"}' https://shareschedule.herokuapp.com/api/messages
 ```
+* Please note that POST-ing messages MUST be done in the above format.
 * To DELETE:
 ```
 curl --request DELETE https://shareschedule.herokuapp.com/api/messages/:id
