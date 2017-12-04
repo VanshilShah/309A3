@@ -39,6 +39,7 @@ We have created the following Facebook accounts for testing purposes (passwords:
 * Email: csc309test02@gmail.com, User ID: 118582692259973
 * Email: csc309test03@gmail.com, User ID: 107237376730772
 * Email: csc309test04@gmail.com, User ID: 103956973726341
+
 Note: Facebook may disable some of them because of security concerns. Try another if one becomes unavailable.
 
 If none of the accounts are available, simply log in from 2 different accounts. Both accounts must log in and accept the permission request to view friends to be seen on the friends list.
