@@ -104,12 +104,15 @@ function newCalendar(elementID, clickHandler) {
                 }
                 if (!section) continue
                 for (var i = 0, len = section.times.length; i < len; i++) {
+                    if (background && !colorDict[courseID]) {
+                        continue
+                    }
                     var event = {
-                        id: courseInfo.data.id,
+                        id: (background ? 'background:' : '') + courseInfo.data.id,
                         title: courseInfo.data.code + '\n' + section.code + '\n' + section.times[i].location,
                         start: `2017-05-0${section.times[i].day}T${section.times[i].startStr}`,
                         end: `2017-05-0${section.times[i].day}T${section.times[i].endStr}`,
-                        color: background ? (colorDict[courseID] ? colorDict[courseID] : notFoundColor) : colors[cnt]
+                        color: background ? colorDict[courseID] : colors[cnt]
                     }
                     if (background) {
                         event.rendering = 'background'
@@ -629,7 +632,7 @@ function newProfileData(isMainUser) {
         })
     }
     
-    obj.onUserChanged = function (userID, oldUserID) {
+    obj.onUserChanged = function (userID, oldUserID, doNotLoad) {
         obj.userID = userID
         
         if (!userID) {
@@ -666,13 +669,15 @@ function newProfileData(isMainUser) {
             return data
         })
         .then(function (data) {
-            if (!isMainUser
+            if (!doNotLoad
+                && (
+                !isMainUser
                 || $.isEmptyObject(obj.data.courses)
                 || (
                     obj.userExists
                     &&
                     confirm('Do you want to load your existing schedule?')
-                )
+                ))
             ) {
                 if (data && data.courses) {
                     obj.data = data
@@ -744,6 +749,10 @@ fbInterface.addObserver(function (userID) {
     }
 })
 // TODO friend onUserChanged will be from manual clicking, and it CAN be null.
+
+function refreshUserData() {
+    userData.onUserChanged(fbInterface.currentUserID, fbInterface.oldUserID, true)
+}
 
 $(document).ready(function () {
     main(function () {

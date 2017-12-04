@@ -147,6 +147,7 @@ $('#message-input-box').keydown(function (e) {
             refreshMessages()
         })
         .catch(function (err) {
+            refreshMessages()
             console.log(err);
         })
     }
