@@ -279,7 +279,7 @@ var fbInterface = (function(){
     
     obj.addObserver = function (handler) {
         observers.push(handler)
-        handler(obj.data)
+        handler(obj.currentUserID)
     }
 
     obj.dispatchChanges = function () {
@@ -586,7 +586,7 @@ function newProfileData(isMainUser) {
 
     obj.addObserver = function (handler) {
         observers.push(handler)
-        handler(obj.data)
+        handler(obj)
     }
 
     obj.dispatchChanges = function () {
