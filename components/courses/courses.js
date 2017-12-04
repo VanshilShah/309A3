@@ -1,6 +1,6 @@
 var userCalendar = newCalendar('user-calendar', function (calEvent) {
     // TODO more functionality.
-    editCourse(calEvent.id)
+    editCourse(calEvent.id.split(':')[0])
 })
 userData.addObserver(userCalendar.onDataChanged)
 

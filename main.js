@@ -108,7 +108,7 @@ function newCalendar(elementID, clickHandler) {
                         continue
                     }
                     var event = {
-                        id: (background ? 'background:' : '') + courseInfo.data.id,
+                        id: (background ? 'background:' : '') + courseInfo.data.id + ':' + courseInfo.section,
                         title: courseInfo.data.code + '\n' + section.code + '\n' + section.times[i].location,
                         start: `2017-05-0${section.times[i].day}T${section.times[i].startStr}`,
                         end: `2017-05-0${section.times[i].day}T${section.times[i].endStr}`,
