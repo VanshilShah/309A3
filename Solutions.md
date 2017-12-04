@@ -31,25 +31,43 @@ Unlike many pre-existing services that allow this, however, ShareSchedule will i
 * Simply type a message in the "message" box, and all other users in the application will be able to view it.
 * Messages are sent anonymously, and appear in reverse-chronological order.
 
+## Database API Endpoints ##
+* The following uses the user ID of test user 4 (103956973726341). You can switch that to any other user ID (for evaluation purpose only, not for final product as it is clearly a security vulnerability)
+* Note that the following curl commands are for Unix systems only. For windows, change single quotes to double quotes, and use backslashes to escape inner double quotes.
+* To GET: 
+```
+curl -X GET https://shareschedule.herokuapp.com/users/103956973726341
+```
+* To POST: 
+```
+curl -H "Content-Type: application/json" -X POST -d '{"courses":{"PHY354H1S20181":{"data":{"id":"PHY354H1S20181","code":"PHY354H1S","name":"Classical Mechanics","campus":"UTSG","term":"2018 Winter","meeting_sections":[{"code":"L0101","size":"166","enrolment":"147","times":[{"day":"1","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"},{"day":"3","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"}],"readableTime":"Mon9-10  Wed9-10"},{"code":"L2001","size":"30","enrolment":"18","times":[{"day":"1","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"},{"day":"3","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"}],"readableTime":"Mon9-10  Wed9-10"}],"breadths":["5"]},"section":"L0101"}}}' https://shareschedule.herokuapp.com/users/103956973726341
+```
+* To PUT (update):
+```
+curl -H "Content-Type: application/json" -X PUT -d '{"courses":{"PHY354H1S20181":{"data":{"id":"PHY354H1S20181","code":"PHY354H1S","name":"Classical Mechanics","campus":"UTSG","term":"2018 Winter","meeting_sections":[{"code":"L0101","size":"166","enrolment":"147","times":[{"day":"1","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"},{"day":"3","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"}],"readableTime":"Mon9-10  Wed9-10"},{"code":"L2001","size":"30","enrolment":"18","times":[{"day":"1","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"},{"day":"3","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"}],"readableTime":"Mon9-10  Wed9-10"}],"breadths":["5"]},"section":"L0101"}}}' https://shareschedule.herokuapp.com/users/103956973726341
+```
+* To DELETE:
+```
+curl --request DELETE https://shareschedule.herokuapp.com/users/103956973726341
+```
 
-## Endpoints ##
+## Messages API Endpoints ##
+* Note that the following curl commands are for Unix systems only. For windows, change single quotes to double quotes, and use backslashes to escape inner double quotes.
+* For your convenience, we have included several bash scripts that allow for the actions to be performed. 
+* These messages may be viewed at under the "Friends" tab.
 * To GET: 
 ```
 curl -X GET https://shareschedule.herokuapp.com/api/messages
 ```
 * To POST: 
 * Note: It is necessary to POST messages in the JSON format. Please do not insert messages in another format, such as plain text.
-* Also, there is no need to surround the message body in "<>" brackets.
 ```
-curl -H "Content-Type: application/json" -X POST -d '{"data":"<Message body here>"}' https://shareschedule.herokuapp.com/api/messages
+curl -H "Content-Type: application/json" -X POST -d '{"data":"my funny message"}' https://shareschedule.herokuapp.com/api/messages
 ```
-
 * To DELETE:
 ```
 curl --request DELETE https://shareschedule.herokuapp.com/api/messages/:id
 ```
-* For your convenience, we have included several bash scripts that allow for the actions to be performed. 
-* These messages may be viewed at under the "Friends" tab.
 
 ## Acknowledgment
 The [FullCalendar](https://fullcalendar.io) API is used to display the calendar.

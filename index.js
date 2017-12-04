@@ -81,7 +81,7 @@ app.put('/users/:id', function(req, res){
 });
 
 app.delete('/users/:id', function(req, res){
-    postgres.updateUserData(req.params.id, function (result, err) {
+    postgres.deleteUserData(req.params.id, function (result, err) {
         if (err) {
             res.send(JSON.stringify(err))
             return
