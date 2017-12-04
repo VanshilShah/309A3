@@ -135,7 +135,7 @@ function newCalendar(elementID, clickHandler) {
     obj.onDataChanged = function (data) {
         var colorDict = {}
         var events = obj.dataToEvents(data.data, false, colorDict)
-        for (var i = 0, len = data.friends; i < len; i++) {
+        for (var i = 0, len = data.friends.length; i < len; i++) {
             extend(events, obj.dataToEvents(data.friends[i], true, colorDict))
         }
         
@@ -694,7 +694,6 @@ function newProfileData(isMainUser) {
                             url: '/users/' + friendID,
                             qs: {}
                         }
-                        startLoading()
                         requestPromise(url, null, 'GET')
                         .then(function (data) {
                             count++
