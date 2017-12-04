@@ -114,7 +114,7 @@ app.delete('/api/messages/:id', function(req, res){
     var i = 0;
     for (i = 0, len = messages.length; i < len; i++) {
         var message = messages[i]
-        if (message.id === req.params.id) {
+        if (message.id === parseInt(req.params.id)) {
             break
         }
     }
