@@ -632,7 +632,7 @@ function newProfileData(isMainUser) {
         })
     }
     
-    obj.onUserChanged = function (userID, oldUserID, doNotLoad) {
+    obj.onUserChanged = function (userID, oldUserID, forceLoad) {
         obj.userID = userID
         
         if (!userID) {
@@ -669,15 +669,14 @@ function newProfileData(isMainUser) {
             return data
         })
         .then(function (data) {
-            if (!doNotLoad
-                && (
-                !isMainUser
+            if (forceLoad
+                || !isMainUser
                 || $.isEmptyObject(obj.data.courses)
                 || (
                     obj.userExists
                     &&
                     confirm('Do you want to load your existing schedule?')
-                ))
+                )
             ) {
                 if (data && data.courses) {
                     obj.data = data
