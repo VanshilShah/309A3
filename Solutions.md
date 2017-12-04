@@ -18,6 +18,7 @@ Unlike many pre-existing services that allow this, however, ShareSchedule will i
 * To attempt to switch section for a course, click on the course name in the list of selected courses, then choose a section.
 * The application will attempt to generate the best (most similar to current) conflict-free schedule and apply it.
 * If it is impossible to select a course without creating a conflict, the application will warn the user of the impending course conflict. Students may accept this and continue, or they may choose to drop the course.
+* If possible, the program will attempt to select a course that does maximizes overlap with facebook friends. Users are free to change his manually if they wish, of course.
 * The interface is also responsive. Try resizing browser window to a smaller width!
 
 
@@ -38,8 +39,9 @@ curl -X GET https://shareschedule.herokuapp.com/api/messages
 ```
 * To POST: 
 * Note: It is necessary to POST messages in the JSON format. Please do not insert messages in another format, such as plain text.
+* Also, there is no need to surround the message body in "<>" brackets.
 ```
-curl -H "Content-Type: application/json" -X POST -d '{"body":"<Message body here>"}' https://shareschedule.herokuapp.com/api/messages
+curl -H "Content-Type: application/json" -X POST -d '{"data":"<Message body here>"}' https://shareschedule.herokuapp.com/api/messages
 ```
 
 * To DELETE:
