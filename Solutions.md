@@ -12,25 +12,31 @@ Our web application will implement a timetable planner and constraint solver for
 Unlike many pre-existing services that allow this, however, ShareSchedule will incorporate the power of Social Media in order to allow students to plan courses with their friends. ShareSchedule will allow users to log in with Facebook, and (if their friends have also used ShareSchedule), view their friends' timetables and attempt to maximize course overlap.
 
 
-## Usage
+## Usage ##
+### Selecting Courses ###
 * Simply search for and select a course by its course code in the search bar, and it will be placed in the list of selected courses.
 * To attempt to switch section for a course, click on the course name in the list of selected courses, then choose a section.
 * The application will attempt to generate the best (most similar to current) conflict-free schedule and apply it.
-* The friends page allows users to click on their friends and then to view their friends' timetables. 
+* If it is impossible to select a course without creating a conflict, the application will warn the user of the impending course conflict. Students may accept this and continue, or they may choose to drop the course.
 * The interface is also responsive. Try resizing browser window to a smaller width!
-* Users may also chat with other users of the application under the Friends Tab. Simply type and send a message in the "Messages" box
 
-## Endpoints
-* In order to post a message, the administrator may also do so from cURL. 
+
+### Viewing Friends Schedules ###
+* The friends page allows users to click on their friends and then to view their friends' timetables. 
+* Select "Friends" at the top of the screen. At the side of the screen, a list of all of the user's facebook friends who have logged in to the app will be displayed. The user may click on each friend to view their selected courses.
+
+
+## Endpoints ##
 * To GET: 
 ```
 curl -X GET https://shareschedule.herokuapp.com/api/messages
 ```
 * To POST: 
+* Note: It is necessary to POST messages in the JSON format. Please do not insert messages in another format, such as plain text.
 ```
 curl -H "Content-Type: application/json" -X POST -d '{"body":"<Message body here>"}' https://shareschedule.herokuapp.com/api/messages
 ```
-* Please note that POST-ing messages MUST be done in the above format.
+
 * To DELETE:
 ```
 curl --request DELETE https://shareschedule.herokuapp.com/api/messages/:id
