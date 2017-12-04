@@ -130,10 +130,10 @@ $('#message-input-box').keydown(function (e) {
     if ($('#message-input-box').val().length === 0) {
         return
     }
-    $('#message-input-box').val('')
-    
     var code = e.keyCode || e.which
     if (code == 13){ // enter
+        $('#message-input-box').val('')
+        
         var url = {
             url: '/api/messages',
             qs: {}
