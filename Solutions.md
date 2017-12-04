@@ -11,34 +11,43 @@ Our web application will implement a timetable planner and constraint solver for
 
 Unlike many pre-existing services that allow this, however, ShareSchedule will incorporate the power of Social Media in order to allow students to plan courses with their friends. ShareSchedule will allow users to log in with Facebook, and (if their friends have also used ShareSchedule), view their friends' timetables and attempt to maximize course overlap.
 
-
 ## Usage ##
 ### Selecting Courses ###
 * Simply search for and select a course by its course code in the search bar, and it will be placed in the list of selected courses.
 * To attempt to switch section for a course, click on the course name in the list of selected courses, then choose a section.
 * The application will attempt to generate the best (most similar to current) conflict-free schedule and apply it.
 * If it is impossible to select a course without creating a conflict, the application will warn the user of the impending course conflict. Students may accept this and continue, or they may choose to drop the course.
-* If possible, the program will attempt to select a course that does maximizes overlap with facebook friends. Users are free to change his manually if they wish, of course.
+* If possible, the program will attempt to select a course that does maximizes overlap with Facebook friends. Users are free to change his manually if they wish, of course.
 * The interface is also responsive. Try resizing browser window to a smaller width!
 
-
 ### Viewing Friends Schedules ###
-* The friends page allows users to click on their friends and then to view their friends' timetables. 
-* Select "Friends" at the top of the screen. At the side of the screen, a list of all of the user's facebook friends who have logged in to the app will be displayed. The user may click on each friend to view their selected courses.
+* You can log in with your Facebook account to share your schedule with your friends.
+* The friends page allows users to click on their friends and view their friends' timetables. 
+* After login, select "Friends" at the top of the screen. At the side of the screen, a list of all of the user's Facebook friends who have logged in to the app will be displayed. The user may click on each friend to view their selected courses.
+* Courses that you are taking, but your friends have a different section, will be highlighted with the same color as the course, on the calendar.
 
 ### Sending Messages ###
 * Users may chat with all other users of the application under the "Friends" tab.
 * Simply type a message in the "message" box, and all other users in the application will be able to view it.
 * Messages are sent anonymously, and appear in reverse-chronological order.
 
+## Test Users ##
+We have created the following Facebook accounts for testing purposes (passwords: 09080706):
+* Email: csc309test01@gmail.com, User ID: 102915063830451
+* Email: csc309test02@gmail.com, User ID: 118582692259973
+* Email: csc309test03@gmail.com, User ID: 107237376730772
+* Email: csc309test04@gmail.com, User ID: 103956973726341
+
 ## Database API Endpoints ##
 * The following uses the user ID of test user 4 (103956973726341). You can switch that to any other user ID (for evaluation purpose only, not for final product as it is clearly a security vulnerability)
-* Note that the following curl commands are for Unix systems only. For windows, change single quotes to double quotes, and use backslashes to escape inner double quotes.
+* Note: the following curl commands are for Unix systems only. For windows, change single quotes to double quotes, and use backslashes to escape inner double quotes.
 * To GET: 
 ```
 curl -X GET https://shareschedule.herokuapp.com/users/103956973726341
 ```
 * To POST: 
+* Note: this only works when inserting user data for the first time (such as after a DELETE). Use PUT for updating user data.
+* The format of the data must be as follows.
 ```
 curl -H "Content-Type: application/json" -X POST -d '{"courses":{"PHY354H1S20181":{"data":{"id":"PHY354H1S20181","code":"PHY354H1S","name":"Classical Mechanics","campus":"UTSG","term":"2018 Winter","meeting_sections":[{"code":"L0101","size":"166","enrolment":"147","times":[{"day":"1","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"},{"day":"3","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"}],"readableTime":"Mon9-10  Wed9-10"},{"code":"L2001","size":"30","enrolment":"18","times":[{"day":"1","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"},{"day":"3","start":"32400","end":"36000","duration":"3600","location":"MP 202","startStr":"09:00:00","endStr":"10:00:00"}],"readableTime":"Mon9-10  Wed9-10"}],"breadths":["5"]},"section":"L0101"}}}' https://shareschedule.herokuapp.com/users/103956973726341
 ```
@@ -52,7 +61,7 @@ curl --request DELETE https://shareschedule.herokuapp.com/users/103956973726341
 ```
 
 ## Messages API Endpoints ##
-* Note that the following curl commands are for Unix systems only. For windows, change single quotes to double quotes, and use backslashes to escape inner double quotes.
+* Note: the following curl commands are for Unix systems only. For windows, change single quotes to double quotes, and use backslashes to escape inner double quotes.
 * For your convenience, we have included several bash scripts that allow for the actions to be performed. 
 * These messages may be viewed at under the "Friends" tab.
 * To GET: 
@@ -65,8 +74,9 @@ curl -X GET https://shareschedule.herokuapp.com/api/messages
 curl -H "Content-Type: application/json" -X POST -d '{"data":"my funny message"}' https://shareschedule.herokuapp.com/api/messages
 ```
 * To DELETE:
+* Note: switch 1234 for any message ID. You can find the message ID in the chat box on "Friends" tab.
 ```
-curl --request DELETE https://shareschedule.herokuapp.com/api/messages/:id
+curl --request DELETE https://shareschedule.herokuapp.com/api/messages/1234
 ```
 
 ## Acknowledgment
