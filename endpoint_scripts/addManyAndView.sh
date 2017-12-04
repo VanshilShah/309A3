@@ -4,4 +4,4 @@ curl -H "Content-Type: application/json" -X POST -d '{"body":"chicken"}' https:/
 curl -H "Content-Type: application/json" -X POST -d '{"body":"pig"}' https://shareschedule.herokuapp.com/api/messages
 curl -H "Content-Type: application/json" -X POST -d '{"body":"donkey"}' https://shareschedule.herokuapp.com/api/messages
 curl -X GET https://shareschedule.herokuapp.com/api/messages
-echo "\n"
+printf "\n"
