@@ -137,7 +137,7 @@ $('#message-input-box').keydown(function (e) {
             qs: {}
         }
         var message = {
-            body: $('#message-input-box').val()
+            data: $('#message-input-box').val()
         }
         
         $('#message-input-box').val('')
