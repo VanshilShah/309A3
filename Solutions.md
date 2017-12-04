@@ -1,4 +1,4 @@
-[Click here for Live Link](https://shareschedule.herokuapp.com/)
+# [Click here for Live Link](https://shareschedule.herokuapp.com/)
 
 ## Group Members
 
