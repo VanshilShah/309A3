@@ -132,8 +132,6 @@ $('#message-input-box').keydown(function (e) {
     }
     var code = e.keyCode || e.which
     if (code == 13){ // enter
-        $('#message-input-box').val('')
-        
         var url = {
             url: '/api/messages',
             qs: {}
@@ -141,6 +139,9 @@ $('#message-input-box').keydown(function (e) {
         var message = {
             body: $('#message-input-box').val()
         }
+        
+        $('#message-input-box').val('')
+        
         requestPromise(url, message, 'POST')
         .then(function (data) {
             refreshMessages()
