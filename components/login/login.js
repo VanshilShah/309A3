@@ -24,6 +24,10 @@ var login = (function(){
         navbar.showPage('friends')
     }
     
+    obj.gotoCourses = function () {
+        navbar.showPage('courses')
+    }
+    
     obj.tryLogOut = function () {
         if (confirm("Are you sure you want to log out?")) {
             FB.logout(function (respose) {
