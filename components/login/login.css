@@ -4,6 +4,14 @@ div {
 }
 */
 
+.top-margin {
+    margin-top: auto;
+}
+
+.bottom-margin {
+    margin-bottom: auto;
+}
+
 .huge-text{
   font-size: 50px;
   text-align: center;
@@ -17,6 +25,9 @@ div {
   left: 0;
   right: 0;
   align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10%;
 }
 
 .fb-login{
