@@ -125,3 +125,24 @@ function displayFriendSchedule(friendID) {
 function findFriends(){
     alert("Not implemented yet.");
 }
+
+setInterval(function () {
+    var url = {
+        url: '/api/messages',
+        qs: {}
+    }
+    requestPromise(url)
+    .then(function (data) {
+        if (data) {
+            var msg = ''
+            for (var i = 0, len = data.length; i < len; i++) {
+                msg += '<b>' + data[i].id + '</b>' + ': ' + data[i].message.body + '<br>'
+            }
+            $('#msg-text').html(msg)
+        }
+    })
+    .catch(function (err) {
+        console.log(err);
+    })
+    
+}, 1000)
