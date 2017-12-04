@@ -6,6 +6,7 @@
     bottom: 0;
     left: 0;
     width: 300px;
+    margin-bottom: 20px;
     display: flex;
     align-items: stretch;
     flex-direction: column;
@@ -13,9 +14,10 @@
 
 .refresh-data-btn {
     width: 100%;
-    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 5px;
     text-align: center;
+    color: #fff;
 }
 
 .courses-search-box {
@@ -30,7 +32,6 @@
     flex: 1;
     display: block;
     overflow: auto;
-    margin-bottom: 20px;
     background-color: #ddd;
     padding: 10px;
 }
