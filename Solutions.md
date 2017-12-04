@@ -25,6 +25,11 @@ Unlike many pre-existing services that allow this, however, ShareSchedule will i
 * The friends page allows users to click on their friends and then to view their friends' timetables. 
 * Select "Friends" at the top of the screen. At the side of the screen, a list of all of the user's facebook friends who have logged in to the app will be displayed. The user may click on each friend to view their selected courses.
 
+### Sending Messages ###
+* Users may chat with all other users of the application under the "Friends" tab.
+* Simply type a message in the "message" box, and all other users in the application will be able to view it.
+* Messages are sent anonymously, and appear in reverse-chronological order.
+
 
 ## Endpoints ##
 * To GET: 
@@ -41,6 +46,8 @@ curl -H "Content-Type: application/json" -X POST -d '{"body":"<Message body here
 ```
 curl --request DELETE https://shareschedule.herokuapp.com/api/messages/:id
 ```
+* For your convenience, we have included several bash scripts that allow for the actions to be performed. 
+* These messages may be viewed at under the "Friends" tab.
 
 ## Acknowledgment
 The [FullCalendar](https://fullcalendar.io) API is used to display the calendar.
